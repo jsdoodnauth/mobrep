@@ -11,7 +11,7 @@ import { Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
 type GlassTabButtonProps = TabTriggerSlotProps & {
-  icon: ReturnType<typeof require>;
+  icon: number;
   label: string;
 };
 

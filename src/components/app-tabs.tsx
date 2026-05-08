@@ -13,12 +13,12 @@ import { useTheme } from '@/hooks/use-theme';
 const BAR_RADIUS = 24;
 
 type AndroidTabButtonProps = TabTriggerSlotProps & {
-  icon: ReturnType<typeof require>;
+  icon: number;
   label: string;
 };
 
 const AndroidTabButton = forwardRef<View, AndroidTabButtonProps>(
-  ({ icon, label, isFocused, onPress, onLongPress, ref: _refProp, ...props }, ref) => {
+  ({ icon, label, isFocused, onPress, onLongPress, ...props }, ref) => {
     const theme = useTheme();
 
     return (
