@@ -18,7 +18,7 @@ type AndroidTabButtonProps = TabTriggerSlotProps & {
 };
 
 const AndroidTabButton = forwardRef<View, AndroidTabButtonProps>(
-  ({ icon, label, isFocused, onPress, onLongPress, ...props }, ref) => {
+  ({ icon, label, isFocused, onPress, onLongPress, ref: _refProp, ...props }, ref) => {
     const theme = useTheme();
 
     return (
@@ -142,9 +142,6 @@ const styles = StyleSheet.create({
     borderRadius: Spacing.four,
     width: '100%',
     gap: Spacing.half,
-  },
-  buttonInnerActive: {
-    borderRadius: Spacing.four,
   },
   icon: {
     width: 24,
