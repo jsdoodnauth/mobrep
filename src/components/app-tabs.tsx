@@ -43,7 +43,6 @@ const AndroidTabButton = forwardRef<View, AndroidTabButtonProps>(
             contentFit="contain"
           />
           <ThemedText
-            type="small"
             themeColor={isFocused ? 'text' : 'textSecondary'}
             style={styles.label}
           >
@@ -119,6 +118,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+    marginHorizontal: Spacing.three,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

@@ -42,7 +42,6 @@ const GlassTabButton = forwardRef<View, GlassTabButtonProps>(
             contentFit="contain"
           />
           <ThemedText
-            type="small"
             themeColor={isFocused ? 'text' : 'textSecondary'}
             style={styles.label}
           >
