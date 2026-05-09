@@ -173,8 +173,7 @@ export const Features: readonly Feature[] = [
     description: 'Front and back cameras and capture capabilities.',
     category: 'hardware',
     route: '/feature/camera',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
   {
@@ -192,8 +191,7 @@ export const Features: readonly Feature[] = [
     description: 'Biometric authentication with Face ID or fingerprint.',
     category: 'hardware',
     route: '/feature/local-authentication',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
   {
@@ -229,8 +227,8 @@ export const Features: readonly Feature[] = [
     description: 'GPS coordinates, geocoding, and geofencing.',
     category: 'location-motion',
     route: '/feature/location',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
+    platforms: ['ios', 'android'],
   },
 
   // Audio & Media
@@ -240,8 +238,7 @@ export const Features: readonly Feature[] = [
     description: 'Microphone, recording, and audio routing.',
     category: 'audio-media',
     route: '/feature/audio',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
 
@@ -279,8 +276,7 @@ export const Features: readonly Feature[] = [
     description: 'iOS App Tracking Transparency permission state.',
     category: 'privacy',
     route: '/feature/tracking-transparency',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios'],
   },
 
