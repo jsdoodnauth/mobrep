@@ -5,7 +5,7 @@ import { Platform, StyleSheet, View } from 'react-native';
 import { ActionButton } from '@/components/action-button';
 import { ScreenContainer } from '@/components/screen-container';
 import { ThemedText } from '@/components/themed-text';
-import { UnsupportedState } from '@/components/unsupported-state';
+import { UnsupportedState } from '@/components/states';
 import { Spacing } from '@/constants/theme';
 
 export default function HapticsScreen() {

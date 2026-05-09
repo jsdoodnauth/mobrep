@@ -1,4 +1,5 @@
-import { Pressable, StyleSheet, View } from 'react-native';
+import * as Haptics from 'expo-haptics';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { CategoryId, Spacing } from '@/constants/theme';
@@ -29,9 +30,17 @@ export function ActionButton({
   const palette = useCategoryPalette(category);
   const isPrimary = variant === 'primary';
 
+  const handlePress = () => {
+    if (disabled) return;
+    if (Platform.OS !== 'web') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => undefined);
+    }
+    onPress();
+  };
+
   return (
     <Pressable
-      onPress={onPress}
+      onPress={handlePress}
       disabled={disabled}
       hitSlop={4}
       accessibilityRole="button"

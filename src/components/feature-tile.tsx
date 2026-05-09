@@ -1,5 +1,12 @@
+import * as Haptics from 'expo-haptics';
 import { type Href, router } from 'expo-router';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 
 import { ThemedText } from '@/components/themed-text';
 import { Spacing } from '@/constants/theme';
@@ -12,59 +19,77 @@ export type FeatureTileProps = {
   onPress?: () => void;
 };
 
+const PRESSED_SCALE = 0.96;
+const PRESS_IN_DURATION_MS = 90;
+const SPRING = { damping: 14, stiffness: 220 };
+
 export function FeatureTile({ feature, onPress }: FeatureTileProps) {
   const palette = useCategoryPalette(feature.category);
   const isPlanned = feature.status === 'planned';
+  const scale = useSharedValue(1);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
 
   const handlePress = () => {
     if (isPlanned) return;
+    if (Platform.OS !== 'web') Haptics.selectionAsync().catch(() => undefined);
     if (onPress) {
       onPress();
       return;
     }
-    // typedRoutes only knows about routes whose files exist; planned routes
-    // are gated by isPlanned above, so by here the file is guaranteed.
     router.push(feature.route as Href);
   };
 
   return (
-    <Pressable
-      onPress={handlePress}
-      disabled={isPlanned}
-      hitSlop={4}
-      accessibilityRole="button"
-      accessibilityLabel={`${feature.title}. ${feature.description}`}
-      accessibilityState={{ disabled: isPlanned }}
-      style={({ pressed }) => [
-        styles.tile,
-        { backgroundColor: palette.bg, opacity: isPlanned ? 0.6 : pressed ? 0.85 : 1 },
-      ]}>
-      <View style={styles.titleRow}>
-        <ThemedText type="default" style={[styles.title, { color: palette.fg }]} numberOfLines={2}>
-          {feature.title}
+    <Animated.View style={[styles.tileWrapper, animatedStyle]}>
+      <Pressable
+        onPress={handlePress}
+        onPressIn={() => {
+          if (isPlanned) return;
+          scale.value = withTiming(PRESSED_SCALE, { duration: PRESS_IN_DURATION_MS });
+        }}
+        onPressOut={() => {
+          if (isPlanned) return;
+          scale.value = withSpring(1, SPRING);
+        }}
+        disabled={isPlanned}
+        hitSlop={4}
+        accessibilityRole="button"
+        accessibilityLabel={`${feature.title}. ${feature.description}`}
+        accessibilityState={{ disabled: isPlanned }}
+        style={[styles.tile, { backgroundColor: palette.bg, opacity: isPlanned ? 0.6 : 1 }]}>
+        <View style={styles.titleRow}>
+          <ThemedText type="default" style={[styles.title, { color: palette.fg }]} numberOfLines={2}>
+            {feature.title}
+          </ThemedText>
+          {isPlanned ? (
+            <View style={[styles.pill, { backgroundColor: palette.accent }]}>
+              <ThemedText type="small" style={[styles.pillLabel, { color: palette.bg }]}>
+                Soon
+              </ThemedText>
+            </View>
+          ) : null}
+        </View>
+        <ThemedText
+          type="small"
+          style={[styles.description, { color: palette.fg }]}
+          numberOfLines={3}>
+          {feature.description}
         </ThemedText>
-        {isPlanned ? (
-          <View style={[styles.pill, { backgroundColor: palette.accent }]}>
-            <ThemedText type="small" style={[styles.pillLabel, { color: palette.bg }]}>
-              Soon
-            </ThemedText>
-          </View>
-        ) : null}
-      </View>
-      <ThemedText
-        type="small"
-        style={[styles.description, { color: palette.fg }]}
-        numberOfLines={3}>
-        {feature.description}
-      </ThemedText>
-    </Pressable>
+      </Pressable>
+    </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
-  tile: {
+  tileWrapper: {
     flex: 1,
     aspectRatio: 1,
+  },
+  tile: {
+    flex: 1,
     borderRadius: Spacing.three,
     padding: Spacing.three,
     justifyContent: 'space-between',

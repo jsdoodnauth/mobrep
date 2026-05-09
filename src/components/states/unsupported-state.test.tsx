@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react-native';
 
-import { UnsupportedState } from './unsupported-state';
+import { UnsupportedState } from '@/components/states';
 
 describe('UnsupportedState', () => {
   it('renders the default title and the supplied reason', () => {

@@ -6,7 +6,7 @@ import { Platform, StyleSheet, View } from 'react-native';
 import { DataRow } from '@/components/data-row';
 import { ScreenContainer } from '@/components/screen-container';
 import { ThemedText } from '@/components/themed-text';
-import { UnsupportedState } from '@/components/unsupported-state';
+import { UnsupportedState } from '@/components/states';
 import { Spacing } from '@/constants/theme';
 import { formatBytes, formatDuration } from '@/lib/format';
 

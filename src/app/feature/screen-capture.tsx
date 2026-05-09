@@ -11,7 +11,7 @@ import { ActionButton } from '@/components/action-button';
 import { DataRow } from '@/components/data-row';
 import { ScreenContainer } from '@/components/screen-container';
 import { ThemedText } from '@/components/themed-text';
-import { UnsupportedState } from '@/components/unsupported-state';
+import { UnsupportedState } from '@/components/states';
 import { Spacing } from '@/constants/theme';
 
 const TAG = 'mobrep-screen-capture';
