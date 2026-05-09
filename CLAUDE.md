@@ -13,14 +13,18 @@ New features follow this pattern: one screen per device capability, live data di
 ## Commands
 
 ```bash
-npm start              # Start Expo dev server (all platforms)
-npm run android        # Start with Android target
-npm run ios            # Start with iOS target
+npm start              # Start Metro for an existing dev client (all platforms)
+npm run android        # Build + install the Android dev client (npx expo run:android)
+npm run ios            # Build + install the iOS dev client (npx expo run:ios — macOS only)
+npm run androidexpo    # Start Metro and target Android in Expo Go
+npm run iosexpo        # Start Metro and target iOS in Expo Go
 npm run web            # Start with web target
 npm run lint           # Run expo lint
 npm test               # Run jest
 npm run reset-project  # Move starter code to app-example/, reset to blank app/
 ```
+
+**Dev client vs Expo Go.** Phases 1–3 ran in Expo Go. Phase 4b adds third-party native modules (`react-native-device-info`, `react-native-permissions`, `react-native-bluetooth-state-manager`, `react-native-volume-manager`, `react-native-shake`, `react-native-mmkv`) that are **not** bundled in Expo Go, so the project now requires a custom dev client to run those screens. Build it once with `npm run android` (Windows-friendly) or `npm run ios` (macOS only — Windows users should use `eas build --profile development --platform ios` instead). The `expo-dev-client` package is already installed; `npm start` connects to whichever dev client is on the simulator/device. The `*expo` scripts still launch Expo Go for screens that don't depend on third-party natives.
 
 ## Architecture
 

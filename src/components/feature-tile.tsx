@@ -22,6 +22,7 @@ export type FeatureTileProps = {
 const PRESSED_SCALE = 0.96;
 const PRESS_IN_DURATION_MS = 90;
 const SPRING = { damping: 14, stiffness: 220 };
+export const DEV_CLIENT_DOT_COLOR = '#F59E0B';
 
 export function FeatureTile({ feature, onPress }: FeatureTileProps) {
   const palette = useCategoryPalette(feature.category);
@@ -57,11 +58,14 @@ export function FeatureTile({ feature, onPress }: FeatureTileProps) {
         disabled={isPlanned}
         hitSlop={4}
         accessibilityRole="button"
-        accessibilityLabel={
-          feature.external
-            ? `${feature.title}. ${feature.description}. External library.`
-            : `${feature.title}. ${feature.description}`
-        }
+        accessibilityLabel={[
+          `${feature.title}.`,
+          feature.description,
+          feature.external ? 'External library.' : null,
+          feature.requiresDevClient ? 'Requires dev client.' : null,
+        ]
+          .filter(Boolean)
+          .join(' ')}
         accessibilityState={{ disabled: isPlanned }}
         style={[styles.tile, { backgroundColor: palette.bg, opacity: isPlanned ? 0.6 : 1 }]}>
         <View style={styles.titleRow}>
@@ -82,8 +86,15 @@ export function FeatureTile({ feature, onPress }: FeatureTileProps) {
           numberOfLines={3}>
           {feature.description}
         </ThemedText>
-        {feature.external ? (
-          <View style={[styles.dot, { backgroundColor: palette.accent }]} />
+        {feature.external || feature.requiresDevClient ? (
+          <View style={styles.dotRow}>
+            {feature.requiresDevClient ? (
+              <View style={[styles.dot, { backgroundColor: DEV_CLIENT_DOT_COLOR }]} />
+            ) : null}
+            {feature.external ? (
+              <View style={[styles.dot, { backgroundColor: palette.accent }]} />
+            ) : null}
+          </View>
         ) : null}
       </Pressable>
     </Animated.View>
@@ -124,10 +135,15 @@ const styles = StyleSheet.create({
     fontSize: 11,
     lineHeight: 14,
   },
-  dot: {
+  dotRow: {
     position: 'absolute',
     top: Spacing.two,
     right: Spacing.two,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.one,
+  },
+  dot: {
     width: 8,
     height: 8,
     borderRadius: 4,

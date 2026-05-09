@@ -86,7 +86,8 @@
         {
           "userTrackingPermission": "Allow $(PRODUCT_NAME) to display your App Tracking Transparency permission status."
         }
-      ]
+      ],
+      "react-native-permissions"
     ],
     "experiments": {
       "typedRoutes": true,

@@ -39,7 +39,6 @@ export type FeatureId =
   | 'volume-manager'
   | 'shake'
   | 'mmkv'
-  | 'system-info'
   | 'ble'
   | 'nfc'
   | 'wifi-scan';
@@ -57,6 +56,8 @@ export type Feature = {
   platforms?: readonly FeaturePlatform[];
   /** True if backed by a non-Expo-SDK package. Renders an indicator dot on the tile. */
   external?: boolean;
+  /** True if the package's native code is not bundled in Expo Go and requires a dev client. */
+  requiresDevClient?: boolean;
   /** npm package name. Surfaced on the detail screen header subtitle. */
   package?: string;
 };
@@ -331,9 +332,9 @@ export const Features: readonly Feature[] = [
     description: 'Adapter state and authorization changes.',
     category: 'wireless',
     route: '/feature/bluetooth-state',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     external: true,
+    requiresDevClient: true,
     package: 'react-native-bluetooth-state-manager',
     platforms: ['ios', 'android'],
   },
@@ -346,6 +347,7 @@ export const Features: readonly Feature[] = [
     status: 'planned',
     requiresInstall: true,
     external: true,
+    requiresDevClient: true,
     package: 'react-native-ble-plx',
     platforms: ['ios', 'android'],
   },
@@ -358,6 +360,7 @@ export const Features: readonly Feature[] = [
     status: 'planned',
     requiresInstall: true,
     external: true,
+    requiresDevClient: true,
     package: 'react-native-nfc-manager',
     platforms: ['ios', 'android'],
   },
@@ -370,6 +373,7 @@ export const Features: readonly Feature[] = [
     status: 'planned',
     requiresInstall: true,
     external: true,
+    requiresDevClient: true,
     package: 'react-native-wifi-reborn',
     platforms: ['ios', 'android'],
   },
@@ -391,9 +395,9 @@ export const Features: readonly Feature[] = [
     description: 'Fast synchronous key/value storage backed by JSI.',
     category: 'storage',
     route: '/feature/mmkv',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     external: true,
+    requiresDevClient: true,
     package: 'react-native-mmkv',
     platforms: ['ios', 'android'],
   },
@@ -405,22 +409,10 @@ export const Features: readonly Feature[] = [
     description: 'Deeper device metadata: disk, RAM, ABIs, IDs.',
     category: 'device-info',
     route: '/feature/device-info',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     external: true,
+    requiresDevClient: true,
     package: 'react-native-device-info',
-  },
-  {
-    id: 'system-info',
-    title: 'System Info',
-    description: 'Android Build properties and SystemProperties.',
-    category: 'device-info',
-    route: '/feature/system-info',
-    status: 'planned',
-    requiresInstall: true,
-    external: true,
-    package: 'expo-system-info',
-    platforms: ['android'],
   },
   {
     id: 'permissions',
@@ -428,9 +420,9 @@ export const Features: readonly Feature[] = [
     description: 'Unified permission status board across iOS and Android.',
     category: 'privacy',
     route: '/feature/permissions',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     external: true,
+    requiresDevClient: true,
     package: 'react-native-permissions',
     platforms: ['ios', 'android'],
   },
@@ -440,9 +432,9 @@ export const Features: readonly Feature[] = [
     description: 'System volume, ringer mode, and live changes.',
     category: 'audio-media',
     route: '/feature/volume-manager',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     external: true,
+    requiresDevClient: true,
     package: 'react-native-volume-manager',
     platforms: ['ios', 'android'],
   },
@@ -452,9 +444,9 @@ export const Features: readonly Feature[] = [
     description: 'Detect device shake gestures.',
     category: 'sensors',
     route: '/feature/shake',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     external: true,
+    requiresDevClient: true,
     package: 'react-native-shake',
     platforms: ['ios', 'android'],
   },

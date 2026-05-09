@@ -76,4 +76,25 @@ describe('FeatureTile', () => {
     render(<FeatureTile feature={readyFeature} />);
     expect(screen.queryByLabelText(/External library\.$/)).toBeNull();
   });
+
+  it('appends a dev-client hint to the accessibility label when requiresDevClient', () => {
+    const devClientFeature: Feature = {
+      ...readyFeature,
+      id: 'mmkv',
+      title: 'MMKV',
+      route: '/feature/mmkv',
+      category: 'storage',
+      external: true,
+      requiresDevClient: true,
+      package: 'react-native-mmkv',
+    };
+    render(<FeatureTile feature={devClientFeature} />);
+    expect(screen.getByLabelText(/Requires dev client\.$/)).toBeTruthy();
+  });
+
+  it('omits both hints for plain features', () => {
+    render(<FeatureTile feature={readyFeature} />);
+    expect(screen.queryByLabelText(/External library\./)).toBeNull();
+    expect(screen.queryByLabelText(/Requires dev client\./)).toBeNull();
+  });
 });
