@@ -16,7 +16,7 @@ export type AsyncDataState<T> = {
  */
 export function useAsyncData<T>(
   fetcher: () => Promise<T>,
-  deps: ReadonlyArray<unknown> = [],
+  deps: readonly unknown[] = [],
 ): AsyncDataState<T> {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);

@@ -8,6 +8,7 @@ import { ScreenContainer } from '@/components/screen-container';
 import { ThemedText } from '@/components/themed-text';
 import { UnsupportedState } from '@/components/unsupported-state';
 import { Spacing } from '@/constants/theme';
+import { formatBytes, formatDuration } from '@/lib/format';
 
 const DEVICE_TYPE_LABELS: Record<Device.DeviceType, string> = {
   [Device.DeviceType.UNKNOWN]: 'Unknown',
@@ -16,24 +17,6 @@ const DEVICE_TYPE_LABELS: Record<Device.DeviceType, string> = {
   [Device.DeviceType.DESKTOP]: 'Desktop',
   [Device.DeviceType.TV]: 'TV',
 };
-
-function formatBytes(bytes: number | null | undefined) {
-  if (bytes == null) return null;
-  if (bytes >= 1024 ** 3) return `${(bytes / 1024 ** 3).toFixed(2)} GB`;
-  if (bytes >= 1024 ** 2) return `${(bytes / 1024 ** 2).toFixed(0)} MB`;
-  return `${bytes} B`;
-}
-
-function formatUptime(seconds: number | null | undefined) {
-  if (seconds == null) return null;
-  const total = Math.floor(seconds);
-  const days = Math.floor(total / 86400);
-  const hours = Math.floor((total % 86400) / 3600);
-  const minutes = Math.floor((total % 3600) / 60);
-  if (days > 0) return `${days}d ${hours}h ${minutes}m`;
-  if (hours > 0) return `${hours}h ${minutes}m`;
-  return `${minutes}m`;
-}
 
 type AsyncDeviceFacts = {
   deviceType: Device.DeviceType | null;
@@ -125,7 +108,7 @@ export default function DeviceScreen() {
           {Platform.OS === 'android' ? (
             <DataRow label="Max memory" value={formatBytes(facts.maxMemory)} />
           ) : null}
-          <DataRow label="Uptime" value={formatUptime(facts.uptimeSeconds)} />
+          <DataRow label="Uptime" value={formatDuration(facts.uptimeSeconds)} />
           <DataRow label="Rooted (experimental)" value={facts.isRooted} />
           <DataRow
             label="CPU architectures"

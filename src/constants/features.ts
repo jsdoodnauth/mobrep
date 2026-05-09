@@ -121,8 +121,7 @@ export const Features: readonly Feature[] = [
     description: 'Bundle ID, version, build, and install times.',
     category: 'device-info',
     route: '/feature/application',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
   },
   {
     id: 'constants',
@@ -130,7 +129,7 @@ export const Features: readonly Feature[] = [
     description: 'Expo session ID, manifest, and platform info.',
     category: 'device-info',
     route: '/feature/constants',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'battery',
@@ -138,7 +137,7 @@ export const Features: readonly Feature[] = [
     description: 'Charge level, charging state, and low power mode.',
     category: 'device-info',
     route: '/feature/battery',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'cellular',
@@ -146,8 +145,7 @@ export const Features: readonly Feature[] = [
     description: 'Carrier, generation, and MCC/MNC codes.',
     category: 'device-info',
     route: '/feature/cellular',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
   {
@@ -156,8 +154,7 @@ export const Features: readonly Feature[] = [
     description: 'Locale, region, timezone, and text direction.',
     category: 'device-info',
     route: '/feature/localization',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
   },
 
   // Hardware
@@ -300,8 +297,7 @@ export const Features: readonly Feature[] = [
     description: 'Connection type, IP address, and reachability.',
     category: 'network',
     route: '/feature/network',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
   },
   {
     id: 'netinfo',
@@ -309,8 +305,7 @@ export const Features: readonly Feature[] = [
     description: 'Cellular generation, WiFi SSID, and signal detail.',
     category: 'network',
     route: '/feature/netinfo',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
   },
 ];
 
