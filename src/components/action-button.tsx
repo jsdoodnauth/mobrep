@@ -57,7 +57,7 @@ export function ActionButton({
       <View style={styles.body}>
         <ThemedText
           type="default"
-          style={[styles.label, { color: isPrimary ? palette.bg : palette.fg }]}>
+          style={[styles.label, { color: isPrimary ? palette.onAccent : palette.fg }]}>
           {label}
         </ThemedText>
         {subtitle ? (
@@ -65,7 +65,7 @@ export function ActionButton({
             type="small"
             style={[
               styles.subtitle,
-              { color: isPrimary ? palette.bg : palette.fg, opacity: 0.8 },
+              { color: isPrimary ? palette.onAccent : palette.fg, opacity: 0.8 },
             ]}>
             {subtitle}
           </ThemedText>

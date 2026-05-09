@@ -66,7 +66,7 @@ export function FeatureTile({ feature, onPress }: FeatureTileProps) {
           </ThemedText>
           {isPlanned ? (
             <View style={[styles.pill, { backgroundColor: palette.accent }]}>
-              <ThemedText type="small" style={[styles.pillLabel, { color: palette.bg }]}>
+              <ThemedText type="small" style={[styles.pillLabel, { color: palette.onAccent }]}>
                 Soon
               </ThemedText>
             </View>
