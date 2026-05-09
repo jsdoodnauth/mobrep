@@ -257,7 +257,7 @@ export const Features: readonly Feature[] = [
     description: 'Status bar height, style, and visibility.',
     category: 'system-display',
     route: '/feature/status-bar',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'navigation-bar',
@@ -265,8 +265,7 @@ export const Features: readonly Feature[] = [
     description: 'Android system navigation bar visibility and style.',
     category: 'system-display',
     route: '/feature/navigation-bar',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['android'],
   },
   {
@@ -275,7 +274,7 @@ export const Features: readonly Feature[] = [
     description: 'Root background color and edge-to-edge display.',
     category: 'system-display',
     route: '/feature/system-ui',
-    status: 'planned',
+    status: 'ready',
   },
 
   // Privacy
