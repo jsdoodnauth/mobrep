@@ -57,4 +57,23 @@ describe('FeatureTile', () => {
     const tile = screen.getByLabelText(/^Battery\./);
     expect(tile.props.accessibilityState).toEqual(expect.objectContaining({ disabled: true }));
   });
+
+  it('appends an external-library hint to the accessibility label when external', () => {
+    const externalFeature: Feature = {
+      ...readyFeature,
+      id: 'async-storage',
+      title: 'AsyncStorage',
+      route: '/feature/async-storage',
+      category: 'storage',
+      external: true,
+      package: '@react-native-async-storage/async-storage',
+    };
+    render(<FeatureTile feature={externalFeature} />);
+    expect(screen.getByLabelText(/External library\.$/)).toBeTruthy();
+  });
+
+  it('does not include the external-library hint for non-external features', () => {
+    render(<FeatureTile feature={readyFeature} />);
+    expect(screen.queryByLabelText(/External library\.$/)).toBeNull();
+  });
 });

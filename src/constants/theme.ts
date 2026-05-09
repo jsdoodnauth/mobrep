@@ -80,6 +80,8 @@ export const CategoryMeta = {
   'system-display': { label: 'System & Display' },
   privacy: { label: 'Privacy' },
   network: { label: 'Network' },
+  wireless: { label: 'Wireless' },
+  storage: { label: 'Storage' },
 } as const;
 
 export type CategoryId = keyof typeof CategoryMeta;
@@ -118,6 +120,14 @@ export const CategoryPalette: Record<CategoryId, { light: CategoryColors; dark: 
   network: {
     light: { bg: '#CFFAFE', fg: '#0F3033', accent: '#3FA0A8' },
     dark: { bg: '#1A2D30', fg: '#CFFAFE', accent: '#7FCFD4' },
+  },
+  wireless: {
+    light: { bg: '#E0E7FF', fg: '#1E1B4B', accent: '#5B6BC9' },
+    dark: { bg: '#1F1F3A', fg: '#E0E7FF', accent: '#94A3FF' },
+  },
+  storage: {
+    light: { bg: '#F5F0E1', fg: '#3B2F14', accent: '#A38442' },
+    dark: { bg: '#2E281A', fg: '#F5F0E1', accent: '#D4B872' },
   },
 };
 

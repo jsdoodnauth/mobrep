@@ -57,7 +57,11 @@ export function FeatureTile({ feature, onPress }: FeatureTileProps) {
         disabled={isPlanned}
         hitSlop={4}
         accessibilityRole="button"
-        accessibilityLabel={`${feature.title}. ${feature.description}`}
+        accessibilityLabel={
+          feature.external
+            ? `${feature.title}. ${feature.description}. External library.`
+            : `${feature.title}. ${feature.description}`
+        }
         accessibilityState={{ disabled: isPlanned }}
         style={[styles.tile, { backgroundColor: palette.bg, opacity: isPlanned ? 0.6 : 1 }]}>
         <View style={styles.titleRow}>
@@ -78,6 +82,9 @@ export function FeatureTile({ feature, onPress }: FeatureTileProps) {
           numberOfLines={3}>
           {feature.description}
         </ThemedText>
+        {feature.external ? (
+          <View style={[styles.dot, { backgroundColor: palette.accent }]} />
+        ) : null}
       </Pressable>
     </Animated.View>
   );
@@ -116,5 +123,13 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 11,
     lineHeight: 14,
+  },
+  dot: {
+    position: 'absolute',
+    top: Spacing.two,
+    right: Spacing.two,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
   },
 });

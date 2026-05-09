@@ -31,7 +31,18 @@ export type FeatureId =
   | 'system-ui'
   | 'tracking-transparency'
   | 'netinfo'
-  | 'appearance';
+  | 'appearance'
+  | 'async-storage'
+  | 'device-info'
+  | 'permissions'
+  | 'bluetooth-state'
+  | 'volume-manager'
+  | 'shake'
+  | 'mmkv'
+  | 'system-info'
+  | 'ble'
+  | 'nfc'
+  | 'wifi-scan';
 
 export type Feature = {
   id: FeatureId;
@@ -44,6 +55,10 @@ export type Feature = {
   requiresInstall?: boolean;
   /** When set, screen renders UnsupportedState on platforms not in the list. */
   platforms?: readonly FeaturePlatform[];
+  /** True if backed by a non-Expo-SDK package. Renders an indicator dot on the tile. */
+  external?: boolean;
+  /** npm package name. Surfaced on the detail screen header subtitle. */
+  package?: string;
 };
 
 export const Features: readonly Feature[] = [
@@ -305,6 +320,143 @@ export const Features: readonly Feature[] = [
     category: 'network',
     route: '/feature/netinfo',
     status: 'ready',
+    external: true,
+    package: '@react-native-community/netinfo',
+  },
+
+  // Wireless (external)
+  {
+    id: 'bluetooth-state',
+    title: 'Bluetooth State',
+    description: 'Adapter state and authorization changes.',
+    category: 'wireless',
+    route: '/feature/bluetooth-state',
+    status: 'planned',
+    requiresInstall: true,
+    external: true,
+    package: 'react-native-bluetooth-state-manager',
+    platforms: ['ios', 'android'],
+  },
+  {
+    id: 'ble',
+    title: 'BLE Scan',
+    description: 'Nearby Bluetooth Low Energy devices and RSSI.',
+    category: 'wireless',
+    route: '/feature/ble',
+    status: 'planned',
+    requiresInstall: true,
+    external: true,
+    package: 'react-native-ble-plx',
+    platforms: ['ios', 'android'],
+  },
+  {
+    id: 'nfc',
+    title: 'NFC',
+    description: 'Read NFC tag id, type, and technologies.',
+    category: 'wireless',
+    route: '/feature/nfc',
+    status: 'planned',
+    requiresInstall: true,
+    external: true,
+    package: 'react-native-nfc-manager',
+    platforms: ['ios', 'android'],
+  },
+  {
+    id: 'wifi-scan',
+    title: 'WiFi Scan',
+    description: 'Connected SSID, BSSID, RSSI, and frequency.',
+    category: 'wireless',
+    route: '/feature/wifi-scan',
+    status: 'planned',
+    requiresInstall: true,
+    external: true,
+    package: 'react-native-wifi-reborn',
+    platforms: ['ios', 'android'],
+  },
+
+  // Storage (external)
+  {
+    id: 'async-storage',
+    title: 'AsyncStorage',
+    description: 'Persistent key/value snapshot and demo writes.',
+    category: 'storage',
+    route: '/feature/async-storage',
+    status: 'ready',
+    external: true,
+    package: '@react-native-async-storage/async-storage',
+  },
+  {
+    id: 'mmkv',
+    title: 'MMKV',
+    description: 'Fast synchronous key/value storage backed by JSI.',
+    category: 'storage',
+    route: '/feature/mmkv',
+    status: 'planned',
+    requiresInstall: true,
+    external: true,
+    package: 'react-native-mmkv',
+    platforms: ['ios', 'android'],
+  },
+
+  // External — slot into existing categories
+  {
+    id: 'device-info',
+    title: 'Device Info',
+    description: 'Deeper device metadata: disk, RAM, ABIs, IDs.',
+    category: 'device-info',
+    route: '/feature/device-info',
+    status: 'planned',
+    requiresInstall: true,
+    external: true,
+    package: 'react-native-device-info',
+  },
+  {
+    id: 'system-info',
+    title: 'System Info',
+    description: 'Android Build properties and SystemProperties.',
+    category: 'device-info',
+    route: '/feature/system-info',
+    status: 'planned',
+    requiresInstall: true,
+    external: true,
+    package: 'expo-system-info',
+    platforms: ['android'],
+  },
+  {
+    id: 'permissions',
+    title: 'Permissions',
+    description: 'Unified permission status board across iOS and Android.',
+    category: 'privacy',
+    route: '/feature/permissions',
+    status: 'planned',
+    requiresInstall: true,
+    external: true,
+    package: 'react-native-permissions',
+    platforms: ['ios', 'android'],
+  },
+  {
+    id: 'volume-manager',
+    title: 'Volume',
+    description: 'System volume, ringer mode, and live changes.',
+    category: 'audio-media',
+    route: '/feature/volume-manager',
+    status: 'planned',
+    requiresInstall: true,
+    external: true,
+    package: 'react-native-volume-manager',
+    platforms: ['ios', 'android'],
+  },
+  {
+    id: 'shake',
+    title: 'Shake',
+    description: 'Detect device shake gestures.',
+    category: 'sensors',
+    route: '/feature/shake',
+    status: 'planned',
+    requiresInstall: true,
+    external: true,
+    package: 'react-native-shake',
+    platforms: ['ios', 'android'],
   },
 ];
 
