@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react-native';
 
-import DeviceScreen from './device';
+import DeviceScreen from '@/app/feature/device';
 
 jest.mock('expo-router', () => ({
   Stack: { Screen: () => null },
