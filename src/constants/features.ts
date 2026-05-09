@@ -30,7 +30,8 @@ export type FeatureId =
   | 'navigation-bar'
   | 'system-ui'
   | 'tracking-transparency'
-  | 'netinfo';
+  | 'netinfo'
+  | 'appearance';
 
 export type Feature = {
   id: FeatureId;
@@ -266,6 +267,14 @@ export const Features: readonly Feature[] = [
     description: 'Root background color and edge-to-edge display.',
     category: 'system-display',
     route: '/feature/system-ui',
+    status: 'ready',
+  },
+  {
+    id: 'appearance',
+    title: 'Appearance',
+    description: 'Override the in-app light or dark theme.',
+    category: 'system-display',
+    route: '/feature/appearance',
     status: 'ready',
   },
 
