@@ -164,8 +164,7 @@ export const Features: readonly Feature[] = [
     description: 'Trigger impact, notification, and selection feedback.',
     category: 'hardware',
     route: '/feature/haptics',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
   {
@@ -184,8 +183,7 @@ export const Features: readonly Feature[] = [
     description: 'Read and adjust the screen brightness level.',
     category: 'hardware',
     route: '/feature/brightness',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
   {
@@ -204,8 +202,7 @@ export const Features: readonly Feature[] = [
     description: 'Read, lock, and unlock the device orientation.',
     category: 'hardware',
     route: '/feature/screen-orientation',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
   },
   {
     id: 'screen-capture',
@@ -213,8 +210,7 @@ export const Features: readonly Feature[] = [
     description: 'Detect or prevent screenshots and screen recording.',
     category: 'hardware',
     route: '/feature/screen-capture',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
   {
@@ -223,8 +219,7 @@ export const Features: readonly Feature[] = [
     description: 'Prevent the screen from dimming or sleeping.',
     category: 'hardware',
     route: '/feature/keep-awake',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
   },
 
   // Location & Motion
