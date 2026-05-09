@@ -63,3 +63,62 @@ export const Spacing = {
 
 export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
 export const MaxContentWidth = 800;
+
+/**
+ * Each feature category gets its own pastel hue. `bg` is the tile surface,
+ * `fg` is the readable text on that surface, `accent` is the saturated
+ * companion used for icons, headers, and action buttons.
+ *
+ * Display order here is the order categories appear on the home screen.
+ */
+export const CategoryMeta = {
+  sensors: { label: 'Sensors' },
+  'device-info': { label: 'Device Info' },
+  hardware: { label: 'Hardware' },
+  'location-motion': { label: 'Location & Motion' },
+  'audio-media': { label: 'Audio & Media' },
+  'system-display': { label: 'System & Display' },
+  privacy: { label: 'Privacy' },
+  network: { label: 'Network' },
+} as const;
+
+export type CategoryId = keyof typeof CategoryMeta;
+
+type CategoryColors = { bg: string; fg: string; accent: string };
+
+export const CategoryPalette: Record<CategoryId, { light: CategoryColors; dark: CategoryColors }> = {
+  sensors: {
+    light: { bg: '#FFE8D6', fg: '#3D2914', accent: '#C97B3F' },
+    dark: { bg: '#3A2A1E', fg: '#FFE8D6', accent: '#E8A86F' },
+  },
+  'device-info': {
+    light: { bg: '#E0F2FE', fg: '#0C2A3E', accent: '#3F88C5' },
+    dark: { bg: '#1B2C3A', fg: '#E0F2FE', accent: '#7AB8E8' },
+  },
+  hardware: {
+    light: { bg: '#FCE7F3', fg: '#3F1F36', accent: '#C75B96' },
+    dark: { bg: '#3A1F2E', fg: '#FCE7F3', accent: '#E892C0' },
+  },
+  'location-motion': {
+    light: { bg: '#DCFCE7', fg: '#14361F', accent: '#4FA467' },
+    dark: { bg: '#1C3024', fg: '#DCFCE7', accent: '#86D49E' },
+  },
+  'audio-media': {
+    light: { bg: '#EDE9FE', fg: '#2A1F47', accent: '#7C5FC9' },
+    dark: { bg: '#28223D', fg: '#EDE9FE', accent: '#A78BE8' },
+  },
+  'system-display': {
+    light: { bg: '#F1F5F9', fg: '#1E293B', accent: '#64748B' },
+    dark: { bg: '#252A33', fg: '#F1F5F9', accent: '#94A3B8' },
+  },
+  privacy: {
+    light: { bg: '#FEF3C7', fg: '#3B2A0A', accent: '#B88534' },
+    dark: { bg: '#332A14', fg: '#FEF3C7', accent: '#E0BC6F' },
+  },
+  network: {
+    light: { bg: '#CFFAFE', fg: '#0F3033', accent: '#3FA0A8' },
+    dark: { bg: '#1A2D30', fg: '#CFFAFE', accent: '#7FCFD4' },
+  },
+};
+
+export const CategoryDisplayOrder = Object.keys(CategoryMeta) as readonly CategoryId[];

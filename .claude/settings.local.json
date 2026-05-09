@@ -8,7 +8,13 @@
       "Bash(node *)",
       "Bash(npx tsc *)",
       "Bash(git -C \"D:\\\\repo\\\\mobrep\" add src/components/app-tabs.ios.tsx src/components/app-tabs.tsx)",
-      "Bash(git -C 'D:\\\\repo\\\\mobrep' commit -m ' *)"
+      "Bash(git -C 'D:\\\\repo\\\\mobrep' commit -m ' *)",
+      "Bash(Get-ChildItem -Path \"D:\\\\repo\\\\mobrep\\\\src\" -Directory)",
+      "Bash(Select-Object Name)",
+      "Bash(npm install *)",
+      "Bash(npm test *)",
+      "Bash(npm run *)",
+      "Bash(git rm *)"
     ]
   }
 }
