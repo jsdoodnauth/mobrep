@@ -1,12 +1,12 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
-import { useColorScheme } from 'react-native';
 
 import { Colors, Fonts } from '@/constants/theme';
+import { ThemeModeProvider, useResolvedScheme } from '@/hooks/use-theme-mode';
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
+function RootStack() {
+  const scheme = useResolvedScheme();
+  const isDark = scheme === 'dark';
   const palette = isDark ? Colors.dark : Colors.light;
 
   return (
@@ -24,5 +24,13 @@ export default function RootLayout() {
         <Stack.Screen name="index" options={{ title: 'Mobile Report' }} />
       </Stack>
     </ThemeProvider>
+  );
+}
+
+export default function RootLayout() {
+  return (
+    <ThemeModeProvider>
+      <RootStack />
+    </ThemeModeProvider>
   );
 }

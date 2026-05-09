@@ -57,8 +57,20 @@ All composed of `ThemedText` + `ThemedView`. Reuse rather than rebuilding.
 - `ScreenContainer` — safe-area + scroll wrapper for every detail screen.
 - `DataRow` — label/value row used to display device data.
 - `UnsupportedState` — fallback for wrong-platform or unavailable features.
+- `ActionButton` — pastel-accent Pressable used by hardware-trigger screens (haptics, keep-awake, brightness, orientation, screen-capture, status-bar, system-ui, navigation-bar).
 
 See `docs/design-system.md` for the full primitive contract.
+
+### Reusable hooks
+
+- `useTheme()` (`src/hooks/use-theme.ts`) — active `Colors` palette.
+- `useCategoryPalette(category)` — active pastel triple `{bg, fg, accent}` for a given category.
+- `useAsyncData(fetcher, deps)` — one-shot fetch with `refresh` and unmount safety. Used by data-only screens.
+- `useSensorStream(sensor, intervalMs)` — subscribes to any expo-sensors-style stream, gates on `isAvailableAsync`, tears down on unmount. Used by every sensor screen.
+
+### Formatting helpers
+
+`src/lib/format.ts` — `formatBytes`, `formatDuration`, `formatPercent`, `formatDate`, `formatNumber`. Use these so values render consistently across screens; unit-tested.
 
 ### Feature registry (`src/constants/features.ts`)
 
@@ -76,7 +88,11 @@ Each feature screen sets `<Stack.Screen options={{ title }} />`, wraps content i
 
 ### Testing
 
-`jest-expo` preset with `@testing-library/react-native`. Tests live next to source as `*.test.ts(x)`. Run with `npm test`. Coverage focuses on registry helpers and component rendering — not snapshot-heavy.
+`jest-expo` preset with `@testing-library/react-native`. Run with `npm test`.
+
+**Tests must live in `src/__tests__/` — never inside `src/app/`.** Expo Router's `require.context` walks every file under `src/app/` as a route, so a test there pulls `@testing-library/react-native` into the device bundle and crashes Metro. `metro.config.js` blockList is a safety net but the convention is the contract.
+
+Coverage focuses on the registry helpers, hooks, and component rendering — not snapshot-heavy.
 
 ### Enabled experiments (`app.json`)
 

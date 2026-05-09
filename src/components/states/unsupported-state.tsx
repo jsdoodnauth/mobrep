@@ -11,10 +11,10 @@ export type UnsupportedStateProps = {
 export function UnsupportedState({ reason, title = 'Not available' }: UnsupportedStateProps) {
   return (
     <View style={styles.container} accessible accessibilityRole="text">
-      <ThemedText type="subtitle" style={styles.title}>
+      <ThemedText type="subtitle" style={styles.text}>
         {title}
       </ThemedText>
-      <ThemedText type="small" themeColor="textSecondary" style={styles.reason}>
+      <ThemedText type="small" themeColor="textSecondary" style={styles.text}>
         {reason}
       </ThemedText>
     </View>
@@ -30,10 +30,7 @@ const styles = StyleSheet.create({
     gap: Spacing.two,
     paddingHorizontal: Spacing.four,
   },
-  title: {
-    textAlign: 'center',
-  },
-  reason: {
+  text: {
     textAlign: 'center',
   },
 });

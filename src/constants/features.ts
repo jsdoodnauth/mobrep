@@ -30,7 +30,8 @@ export type FeatureId =
   | 'navigation-bar'
   | 'system-ui'
   | 'tracking-transparency'
-  | 'netinfo';
+  | 'netinfo'
+  | 'appearance';
 
 export type Feature = {
   id: FeatureId;
@@ -53,7 +54,7 @@ export const Features: readonly Feature[] = [
     description: 'X/Y/Z device acceleration including gravity.',
     category: 'sensors',
     route: '/feature/accelerometer',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'gyroscope',
@@ -61,7 +62,7 @@ export const Features: readonly Feature[] = [
     description: 'Rotation rate around each axis in rad/s.',
     category: 'sensors',
     route: '/feature/gyroscope',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'magnetometer',
@@ -69,7 +70,7 @@ export const Features: readonly Feature[] = [
     description: 'Ambient magnetic field strength in microteslas.',
     category: 'sensors',
     route: '/feature/magnetometer',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'barometer',
@@ -77,7 +78,7 @@ export const Features: readonly Feature[] = [
     description: 'Atmospheric pressure and relative altitude.',
     category: 'sensors',
     route: '/feature/barometer',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'light-sensor',
@@ -85,7 +86,7 @@ export const Features: readonly Feature[] = [
     description: 'Ambient light level in lux.',
     category: 'sensors',
     route: '/feature/light-sensor',
-    status: 'planned',
+    status: 'ready',
     platforms: ['android'],
   },
   {
@@ -94,7 +95,7 @@ export const Features: readonly Feature[] = [
     description: 'Fused acceleration, rotation, and orientation.',
     category: 'sensors',
     route: '/feature/device-motion',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'pedometer',
@@ -102,7 +103,7 @@ export const Features: readonly Feature[] = [
     description: 'Steps from the device step detector.',
     category: 'sensors',
     route: '/feature/pedometer',
-    status: 'planned',
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
 
@@ -121,8 +122,7 @@ export const Features: readonly Feature[] = [
     description: 'Bundle ID, version, build, and install times.',
     category: 'device-info',
     route: '/feature/application',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
   },
   {
     id: 'constants',
@@ -130,7 +130,7 @@ export const Features: readonly Feature[] = [
     description: 'Expo session ID, manifest, and platform info.',
     category: 'device-info',
     route: '/feature/constants',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'battery',
@@ -138,7 +138,7 @@ export const Features: readonly Feature[] = [
     description: 'Charge level, charging state, and low power mode.',
     category: 'device-info',
     route: '/feature/battery',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'cellular',
@@ -146,8 +146,7 @@ export const Features: readonly Feature[] = [
     description: 'Carrier, generation, and MCC/MNC codes.',
     category: 'device-info',
     route: '/feature/cellular',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
   {
@@ -156,8 +155,7 @@ export const Features: readonly Feature[] = [
     description: 'Locale, region, timezone, and text direction.',
     category: 'device-info',
     route: '/feature/localization',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
   },
 
   // Hardware
@@ -167,8 +165,7 @@ export const Features: readonly Feature[] = [
     description: 'Trigger impact, notification, and selection feedback.',
     category: 'hardware',
     route: '/feature/haptics',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
   {
@@ -177,8 +174,7 @@ export const Features: readonly Feature[] = [
     description: 'Front and back cameras and capture capabilities.',
     category: 'hardware',
     route: '/feature/camera',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
   {
@@ -187,8 +183,7 @@ export const Features: readonly Feature[] = [
     description: 'Read and adjust the screen brightness level.',
     category: 'hardware',
     route: '/feature/brightness',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
   {
@@ -197,8 +192,7 @@ export const Features: readonly Feature[] = [
     description: 'Biometric authentication with Face ID or fingerprint.',
     category: 'hardware',
     route: '/feature/local-authentication',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
   {
@@ -207,8 +201,7 @@ export const Features: readonly Feature[] = [
     description: 'Read, lock, and unlock the device orientation.',
     category: 'hardware',
     route: '/feature/screen-orientation',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
   },
   {
     id: 'screen-capture',
@@ -216,8 +209,7 @@ export const Features: readonly Feature[] = [
     description: 'Detect or prevent screenshots and screen recording.',
     category: 'hardware',
     route: '/feature/screen-capture',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
   {
@@ -226,8 +218,7 @@ export const Features: readonly Feature[] = [
     description: 'Prevent the screen from dimming or sleeping.',
     category: 'hardware',
     route: '/feature/keep-awake',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
   },
 
   // Location & Motion
@@ -237,8 +228,8 @@ export const Features: readonly Feature[] = [
     description: 'GPS coordinates, geocoding, and geofencing.',
     category: 'location-motion',
     route: '/feature/location',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
+    platforms: ['ios', 'android'],
   },
 
   // Audio & Media
@@ -248,8 +239,7 @@ export const Features: readonly Feature[] = [
     description: 'Microphone, recording, and audio routing.',
     category: 'audio-media',
     route: '/feature/audio',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
 
@@ -260,7 +250,7 @@ export const Features: readonly Feature[] = [
     description: 'Status bar height, style, and visibility.',
     category: 'system-display',
     route: '/feature/status-bar',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'navigation-bar',
@@ -268,8 +258,7 @@ export const Features: readonly Feature[] = [
     description: 'Android system navigation bar visibility and style.',
     category: 'system-display',
     route: '/feature/navigation-bar',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['android'],
   },
   {
@@ -278,7 +267,15 @@ export const Features: readonly Feature[] = [
     description: 'Root background color and edge-to-edge display.',
     category: 'system-display',
     route: '/feature/system-ui',
-    status: 'planned',
+    status: 'ready',
+  },
+  {
+    id: 'appearance',
+    title: 'Appearance',
+    description: 'Override the in-app light or dark theme.',
+    category: 'system-display',
+    route: '/feature/appearance',
+    status: 'ready',
   },
 
   // Privacy
@@ -288,8 +285,7 @@ export const Features: readonly Feature[] = [
     description: 'iOS App Tracking Transparency permission state.',
     category: 'privacy',
     route: '/feature/tracking-transparency',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
     platforms: ['ios'],
   },
 
@@ -300,8 +296,7 @@ export const Features: readonly Feature[] = [
     description: 'Connection type, IP address, and reachability.',
     category: 'network',
     route: '/feature/network',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
   },
   {
     id: 'netinfo',
@@ -309,8 +304,7 @@ export const Features: readonly Feature[] = [
     description: 'Cellular generation, WiFi SSID, and signal detail.',
     category: 'network',
     route: '/feature/netinfo',
-    status: 'planned',
-    requiresInstall: true,
+    status: 'ready',
   },
 ];
 
