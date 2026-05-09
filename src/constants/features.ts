@@ -53,7 +53,7 @@ export const Features: readonly Feature[] = [
     description: 'X/Y/Z device acceleration including gravity.',
     category: 'sensors',
     route: '/feature/accelerometer',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'gyroscope',
@@ -61,7 +61,7 @@ export const Features: readonly Feature[] = [
     description: 'Rotation rate around each axis in rad/s.',
     category: 'sensors',
     route: '/feature/gyroscope',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'magnetometer',
@@ -69,7 +69,7 @@ export const Features: readonly Feature[] = [
     description: 'Ambient magnetic field strength in microteslas.',
     category: 'sensors',
     route: '/feature/magnetometer',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'barometer',
@@ -77,7 +77,7 @@ export const Features: readonly Feature[] = [
     description: 'Atmospheric pressure and relative altitude.',
     category: 'sensors',
     route: '/feature/barometer',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'light-sensor',
@@ -85,7 +85,7 @@ export const Features: readonly Feature[] = [
     description: 'Ambient light level in lux.',
     category: 'sensors',
     route: '/feature/light-sensor',
-    status: 'planned',
+    status: 'ready',
     platforms: ['android'],
   },
   {
@@ -94,7 +94,7 @@ export const Features: readonly Feature[] = [
     description: 'Fused acceleration, rotation, and orientation.',
     category: 'sensors',
     route: '/feature/device-motion',
-    status: 'planned',
+    status: 'ready',
   },
   {
     id: 'pedometer',
@@ -102,7 +102,7 @@ export const Features: readonly Feature[] = [
     description: 'Steps from the device step detector.',
     category: 'sensors',
     route: '/feature/pedometer',
-    status: 'planned',
+    status: 'ready',
     platforms: ['ios', 'android'],
   },
 
