@@ -1,13 +1,28 @@
-import AppTabs from '@/components/app-tabs';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import React from 'react';
+import { Stack } from 'expo-router';
 import { useColorScheme } from 'react-native';
 
-export default function TabLayout() {
+import { Colors, Fonts } from '@/constants/theme';
+
+export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+  const palette = isDark ? Colors.dark : Colors.light;
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AppTabs />
+    <ThemeProvider value={isDark ? DarkTheme : DefaultTheme}>
+      <Stack
+        screenOptions={{
+          headerStyle: { backgroundColor: palette.background },
+          headerTintColor: palette.text,
+          headerTitleStyle: { fontFamily: Fonts.rounded, fontWeight: '600' },
+          headerBackButtonDisplayMode: 'minimal',
+          contentStyle: { backgroundColor: palette.background },
+          animation: 'slide_from_right',
+          animationDuration: 220,
+        }}>
+        <Stack.Screen name="index" options={{ title: 'Mobile Report' }} />
+      </Stack>
     </ThemeProvider>
   );
 }

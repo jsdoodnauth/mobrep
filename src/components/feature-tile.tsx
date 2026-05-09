@@ -1,4 +1,4 @@
-import { router } from 'expo-router';
+import { type Href, router } from 'expo-router';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
@@ -22,7 +22,9 @@ export function FeatureTile({ feature, onPress }: FeatureTileProps) {
       onPress();
       return;
     }
-    router.push(feature.route);
+    // typedRoutes only knows about routes whose files exist; planned routes
+    // are gated by isPlanned above, so by here the file is guaranteed.
+    router.push(feature.route as Href);
   };
 
   return (
