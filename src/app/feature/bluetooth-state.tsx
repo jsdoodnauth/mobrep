@@ -1,8 +1,7 @@
 import { Stack } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
-import {
-  BluetoothStateManager,
+import BluetoothStateManager, {
   type BluetoothState,
 } from 'react-native-bluetooth-state-manager';
 
@@ -27,10 +26,10 @@ export default function BluetoothStateScreen() {
 
   useEffect(() => {
     if (Platform.OS !== 'ios' && Platform.OS !== 'android') return;
-    const unsubscribe = BluetoothStateManager.addListener((next) => {
+    const subscription = BluetoothStateManager.onStateChange((next) => {
       setState(next);
     }, true);
-    return () => unsubscribe();
+    return () => subscription.remove();
   }, []);
 
   if (Platform.OS !== 'ios' && Platform.OS !== 'android') {
@@ -75,8 +74,10 @@ export default function BluetoothStateScreen() {
           <ActionButton
             category="wireless"
             variant="secondary"
-            label="Request to disable"
-            onPress={() => BluetoothStateManager.requestToDisable().catch(() => undefined)}
+            label="Disable adapter"
+            subtitle="Android only — turns Bluetooth off without a system prompt."
+            disabled={Platform.OS !== 'android'}
+            onPress={() => BluetoothStateManager.disable().catch(() => undefined)}
           />
         </View>
       </ScreenContainer>
